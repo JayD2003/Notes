@@ -1,0 +1,95 @@
+module 1 -> Software Characteristics
+
+purpose of software
+software complexity
+reasons for software complexity
+
+module 2 -> object model
+
+evolution of languages
+
+object model is based on 
+1. object oriented analysis
+2. object oriented design
+3. object oriented programming
+
+module 3 -> UML Big Picture
+
+model software system
+modelling language
+UML - Unified Modelling Language
+View Model and its intent
+UML Diagrams -> 
+1. Behavioural Diagram -> 
+Activity , Use Case, Interaction(Communication, Sequence, Interaction Overview), State Machine Diagram
+2. Structure Diagram ->
+Class, Component, Package, Deployment, Object Diagram
+GizmoShopping Case Study
+
+module 4 -> UML Use Case Diagram
+Elements -> 
+1. Use Case
+2. Actors
+3. Communication Line
+4. System Boundary
+Relationships -> 
+1. <<include>> relationship
+2. <<extend>> relationship
+
+module 5 -> UML Activity Diagram
+Elements -> 
+1. Note
+2. Initial Node
+3. Action
+4. Activity Final Node
+5. Edge
+6. Decision Node
+7. Merge
+8. Fork
+9. Join
+10. Partitions/Swim lanes
+
+module 6 -> UML Class and Object Diagram
+concepts ->
+1. identifying classes
+2. modelling logical structure
+3. class hierarchy -> inheritance, containment(composition, aggregation, association, dependency)
+elements -> 
+1. class
+2. object
+3. attributes
+4. operations or methods
+
+module 7 -> UML Sequence Diagram
+elements ->
+1. Participant
+2. Life Line
+3. Message
+4. Activation/Execution Bar
+
+module 8 -> UML State Machine Diagram
+elements ->
+1. State
+2. State with behaviour 
+3. Initial Pseudo state
+4. Final State
+5. Transitions
+6. Trigger
+
+module 9 -> UML Package Diagram
+elements ->
+1. Packages
+2. Nested Packages
+
+module 10 -> UML Component Diagram
+elements ->
+1. Components
+2. Notations <<Component>>
+3. Component Interface -> Provided, Required
+4. Port - point of interaction with external world -> Provided and Required Port
+
+module 11 -> UML Deployment Diagram
+physical view in kruchten's 4+1 diagram
+elements ->
+1. Node -> Basic, Detailed 
+2. Artifact Deployment on Node

@@ -1,0 +1,109 @@
+module 1 -> errors and exceptions
+errors -> compile time and runtime errors
+
+exception ->
+
+error vs exception
+exceptions are meant to be caught and handled in the application code
+errors are typically not recoverable
+
+module 2 -> exception types
+exception -> abnormal and unexpected event
+types -> checked and unchecked
+checked -> compile time
+unchecked -> run time
+error is considered as an unchecked exception
+exception hierarchy -> throwable class, exception, error
+categories -> built in (checked, unchecked), user defined
+Advantages - error localization, program flow control, enhanced readability, custom error messages
+
+module 3 -> handling exceptions
+try and catch block
+syntax -> try{}catch(Exception e){}
+methods of e -> e.getMessage()
+e.printStackTrace()
+finally block
+
+module 4 -> clean up operations
+clean up operations - releasing resources after using them
+finally block -> used to write clean up code (always executed even exception occurs)
+
+module 5 -> Auto Clean up Operations
+try with resources -> 
+1. introduced in java 7
+2. automatic resource closing
+syntax -> try(resource resourceName){}finally{}
+
+module 6 -> Handling Multiple Exceptions
+ways -> 1. multiple catch blocks
+2. single catch block with a common superclass
+
+unchecked Exceptions -> extend RuntimeException
+strategies of handling unchecked exceptions ->
+1. Preventive Coding
+2. Logging
+3. Global Exception Handling
+4. Graceful Degradation
+
+module 7 -> Exceptions and Methods
+method encounters an exception
+1. handle exception within method
+2. use throws clause and propagate it to calling code
+throws clause -> used to mention that the method can produce this exception
+Best Practices for method level exception handling ->
+1. use specific exception types
+2. keep methods short and focused
+3. handle exceptions appropriately
+4. document exceptions thrown
+
+module 8 -> Creating Custom Exceptions
+built-in Exceptions limitations ->
+1. Limited scope
+2. generic messages
+3. inflexibility
+4. inability to extend
+
+need for custom exceptions ->
+1. meaningful error messages
+2. context Aware handling
+3. Application Specific Requirements
+
+custom exceptions
+steps -> 
+1. create a new class that extends exception class
+2. define the constructors 
+3. use exception in code
+4. handle your custom exception
+syntax -> 
+public class CustomExceptionName extends Exception{
+public CustomExceptionName(string message, Throwable cause){
+super(message, cause)
+}
+}
+
+module 9 -> logging exceptions
+exception logging ->
+1. records info about exceptional events, errors or unexpected situations in code.
+2. is crucial for debugging, monitoring and maintaining software applications.
+stack trace -> list of function calls that led to the exception
+
+popular logging frameworks -> 
+1. java util logging(JUL)
+2. Log4j
+3. Logback
+
+package -> java.util.logging to log exception to a file
+
+module 10 -> Exception Best Practices
+Do's ->
+1. Catch Specific Exceptions
+2. Rethrow Exceptions Sparingly
+3. Handle Exceptions at right level
+3. use try with resources
+
+Don't ->
+1. don't catch throwable
+2. avoid empty catch blocks
+3. don't ignore exceptions
+4. avoid catching generic exceptions
+5. don't rethrow unmodified exceptions

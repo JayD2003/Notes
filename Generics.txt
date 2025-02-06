@@ -1,0 +1,55 @@
+module 1 -> intro to generics
+generic ->
+1. means parameterized types
+2. generics ensure type safety when working with classes, interface and methods
+3. goal -> create reusable code independent of specific data types
+4. introduced in java 5
+
+issues with no generic code 
+1. type casting
+2. lack of compile time checks
+3. code duplication
+
+Advantages using generics
+1. type safety
+2. code reusability
+3. readability and maintainability
+4. role in collections framework
+
+
+module 2 -> types of generics
+types -> raw and parameterized types
+
+raw -> generic class or method used without specifying any type parameters
+parameterized -> generic class or method where type parameters are explicitly specified
+
+module 3 -> defining generic classes
+syntax -> public class Generic<T>{
+private T f;
+public Generic(T f){
+this.f = f;}
+}
+common use cases for generic classes
+1. collections framework
+2. custom data structures
+3. Wrapper classes
+
+module 4 -> defining generic methods
+syntax -> public static <T> returnType name(T name){}
+benefits ->
+1. code reusability
+2. elimination of type casting
+
+module 5 -> bounded type parameters
+bounded type parameters -> provide a way to enforce constraints on the types that can be used with a generic class or method
+types -> upper and lower
+upper - restrict types to be subclasses of specific types
+syntax -> public class Name<T extends ClassName>
+lower - restrict types to be superclasses of specific types
+syntax -> public class Name<T>{
+public Name(List<? super T> items)}
+uses -> type safety, API design, code reusability
+
+
+auto boxing
+type inference???
