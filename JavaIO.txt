@@ -1,0 +1,182 @@
+module 1 -> Intro to JAVA IO Streams
+Stream - sequence of data
+java io streams -> 3 types - system.in, system.out and system.err
+categories of java streams - datatypes and functionality
+datatypes -> bytestreams and character streams
+bytestreams ->
+1. are used for reading and writing binary data (byte by byte)
+character streams ->
+1. are used for reading and writing text data(char by char)
+
+For ByteStreams
+Abstract classes -> inputStream and OutputStream
+InputStream -> subclasses
+1. FileInputStream - read data from a file
+2. BufferedInputStream - adds buffering to an input stream for efficiency
+3. DataInputStream - allows an app to read primitive java datatypes
+4. ObjectInputStream - deserializes primitive data and objects previously written using an ObjectOutputStream
+
+OutputStream -> subclasses
+1. FileOutputStream - 
+2. BufferedOutputStream 
+3. DataOutputStream
+4. ObjectOutputStream - serializes primitive data and objects to an OutputStream
+
+For CharacterStreams 
+Abstract classes - Reader and Writer
+
+reader -> subclasses
+1. FileReader - reads char files
+2. BufferedReader - reads text from characterinput stream, buffering char for efficient reading
+3. InputStreamReader - reads bytes and decodes them into char using a specified charset.
+
+Writer - subclasses
+1. FIleWriter
+2. BufferedWriter
+3. OutputStreamWriter
+
+Functionality -> Input and output streams
+input streams - designed for reading data from source. they include -> byte and char input streams(InputStream, Reader and its subclasses)
+
+output streams - designed for writing data to a destination. they include -> byte and char output streams(OutputStreams, writer and its subclasses)
+
+Specialized streams ->
+1. PrintStream and PrintWriter 
+2. PushbackInputStream and PushbackReader
+3. Buffered Streams -> BufferedInputStream, BufferedOutputStream, BufferedReader, BufferedWriter
+
+
+module 2 -> File Input and Output
+FileInputStream and FileOutputStream - handles binary data
+used for reading files
+used only in try catch block as the file may not exist in system
+syntax -> 
+FileInputStream fis = new FileInputStream("filename.txt");
+fis.read() fis.close()
+FileOutputStream fos = new FileOutputStream("filename.txt");
+fos.write() fos.close()
+
+FileReader and FileWriter - used for text files
+syntax ->
+FileReader fr = new FileReader("filename.txt")
+fr.read() fr.close()
+FileWriter fw = new FileWriter("Filename.txt")
+fw.write() fw.close()
+
+BufferedReader, BufferedWriter - uses filereader/writer to access the files
+BufferedReader br = new BufferedReader(new FileReader("name.txt"));
+
+
+module 3 - byte and character array streams
+purpose - these streams provide a convenient way to work with data in memory, allowing for fast read and write operations without need for I/O access to disks
+ByteArrayInputStream ByteArrayOutputStream
+- used to read from and write to byte array
+- used in performance is critical
+- subclass of InputStream and OutputStream from javaio
+
+CharArrayReader CharArrayWriter
+- used for reading from and writing to character arrays.
+- offer a char stream interface to char arrays by processing in memory
+- 
+
+module 4 - buffered classes
+BufferedInputStream BufferedOutputStream
+- these byte stream classes buffer input and output to and from the underlying source, readucing the no of write and read operations
+try(FileInputStream fis = new FileInputStream(name.txt)){
+BufferedInputStream bis = new BufferedInputStream(fis);
+}
+try(FileOutputStream fis = new FileOutputStream(name.txt)){
+BufferedOutputStream bis = new BufferedOutputStream(fis);
+}
+
+BufferedReader and BufferedWriter
+- these char stream classes buffer reads and writes to text files, making char  I/O more efficient and convenient by reducing no of disk and network operations
+try(FileReader fr = new FileReader(name.txt)){
+BufferedReader br = new BufferedReader(fr);
+}
+best practices 
+- always use buffered streams for file I/O unless scenario explicity requires 
+- remember to flush output streams before closing them especially if buffer might still contain unflushed data
+- use bufferedreader's readline() method for efficient line by line reading of text data
+
+module 5 - serialization
+key concepts -> 
+1. serializable interface - objects that need to be serialized must implement this interface
+2. externalizable interface - provides a more flexible way yo customize serialization
+3. serialversionUID - unique identifier used during deserialization to verify that the serialized and deserialized objects are compatible
+
+serialization in java
+- the process of converting an object into a byte stream, which can be persisted to a file transmitted over a network or stored in a database
+- allows objects to be saved and reconstructed later, preserving their state and structure
+
+Java Serialization API
+- java provides Serializable interface which objects can implement to indicate their ability to be serialized
+- ObjectOutputStream and ObjectInputStream classes are used for serialization and deserialzation
+
+streams used for serialization
+- serialization in java involves converting objects into byte streams for storage or transmission
+- ObjectOutputStream and ObjectInputStream are primary streams used for serialization and deserialization
+- these streams provide functionalities to write objects to a stream and read them back preserving their state and structure
+
+ObjectOutputStream methods - writeObject and flush
+ObjectInputStream -  readObject and close
+
+requirement for serialization 
+1. for an object to be serializable 
+- implement serializable interface or inherit from a serializable class 
+- provide an default constructor with argument
+
+Non serializable objects
+- most java objects are serializable by default
+- some objects of some system level classes in java are not serializable due to dynamic nature of the data they represent
+- reconstructing such objects in a different environment would result in different values making serialization impractical
+
+handling non serializable objects
+- use transient keywork to exclude non serializable fields from serializable
+- implement custom serialization logic for non serializable objects using writeobject() and readObject()
+
+what is preserved when an object is serialized
+preserved - instance variables, object graph(relations btw objects), class metadata(info abt class and its hierarchy)
+not preserved - transient fields, static fields(are not serialized, as they belong to class not object)
+
+process of serialization
+steps 
+1. implement serializable interface by the class of the object to be serialized
+2. create serialVersionUID
+3. after writing object into stream, flush ObjectOutputStream to ensure all data is written and then closed to release system resources
+ex-> 
+Syntax -> class className implements Serializable
+
+Process of Deserialization
+- reverses the serialization process, converting a serialized object from a stream of bytes back into its original object state
+steps ->
+1. create inputstream
+2. create objectinputstream
+3. read serialized object and handle classnotfoundexception
+4. access deserialized object and close objectinputstream
+
+transient keyword
+- used to indicate that a field should not be serialized
+- allows for selective exclusion of fields that are not essential for object reconstruction or that contain sensitive information
+syntax -> private transient String ssn;
+usage ->
+1. excluded from serialization process and retain their default values when object is deserialized
+
+Externalizable interface
+- provides custom serialization and deserialization
+- requires implementation of writeExternal() and readExternal()
+- custom serialization logic
+1. writeExternal(ObjectOutput out) : Serialization
+2. readExternal(ObjectInput in) : Deserialization
+usage - for handling no serializable fields or complex object structures
+
+requirement for serialization
+- object serialization with externalizable
+- creating serialization logic and selective serialization of object state
+- creating deserialization logic and precise object reconstruction from input stream
+- flexibility and control
+
+module 6 - File and Folder Handling(File Class)
+File Class
+- used to represent file and directory pathnames in abstract manner
+- provides methods for querying and manipulating file and directory metadata(permissions etc) but does not directly handle file content
